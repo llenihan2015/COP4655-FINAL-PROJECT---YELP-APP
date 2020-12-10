@@ -72,4 +72,8 @@ function display(data){
     
     resultdiv.innerHTML=data.businesses[1].name;
     resultdiv.innerHTML=data.businesses[2].name;
+    resultdiv.innerHTML=data.businesses[1].name;
+    resultdiv.innerHTML=data.businesses[2].name;
+    resultdiv.innerHTML=data.businesses[1].name;
+    resultdiv.innerHTML=data.businesses[2].name;
 }
