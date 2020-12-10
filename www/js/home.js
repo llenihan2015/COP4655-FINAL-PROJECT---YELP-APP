@@ -70,6 +70,6 @@ function display(data){
     homeName.classList.add('hide');
     hometab.classList.remove('active');
     
-   
+    resultdiv.innerHTML=data.businesses[1].name;
     resultdiv.innerHTML=data.businesses[2].name;
 }
