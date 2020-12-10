@@ -58,6 +58,24 @@ function search(){
 
 function gps(){
     
+    
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+    if(this.readyState === 4) {
+        console.log(this.responseText);
+        var data = JSON.parse(this.responseText)
+        resultdiv.classList.remove('hide');
+        display(data);
+    }
+    });
+
+    xhr.open("GET", "https://api.yelp.com/v3/businesses/search?term="+resname.value+"&location="+locationname.value);
+    xhr.setRequestHeader("Authorization", "Bearer GwlxjEcOFdrbZeohh6vRfDOZKBkLIx10cobFqOyHbXjTSxiPg5Ucys6KLIndZxuaJln3MPHgCtlRCAgXufwjv9eKPwmMmDlW660rEu31Kd8dYP8zNtXmpcSZW4HRX3Yx");
+
+    xhr.send();
+
  
 }
 
