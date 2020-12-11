@@ -4,7 +4,6 @@ searchbtn.addEventListener('click', search);
 gpsbtn.addEventListener('click', gps);
 hometab.addEventListener('click', login);
 
-
 //show navbar and the elements of the home when logged in
 function login(){
     navi.classList.remove('hide');
@@ -12,12 +11,13 @@ function login(){
     appName.classList.add('hide');
     studname.classList.add('hide');
     homeName.classList.remove('hide');
-    logoutbtn.classList.remove('hide')
-    resultdiv.innerHTML=" ";
+    logoutbtn.classList.remove('hide');
     resulttab.classList.remove('active');
+    resultdiv.classList.add('hide');
     resname.value = "";
     locationname.value ="";
-
+    document.body.style.height = '600px';
+    
 }
 
  //hide elements of the home tab
@@ -31,15 +31,12 @@ function logout(){
     resultdiv.innerHTML=" ";
     resname.value = "";
     locationname.value ="";
-    
 }
-
 
 function search(){
 
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-
     xhr.addEventListener("readystatechange", function() {
     if(this.readyState === 4) {
         console.log(this.responseText);
@@ -48,20 +45,18 @@ function search(){
         display(data);
     }
     });
-
     xhr.open("GET", "https://api.yelp.com/v3/businesses/search?term="+resname.value+"&location="+locationname.value);
     xhr.setRequestHeader("Authorization", "Bearer GwlxjEcOFdrbZeohh6vRfDOZKBkLIx10cobFqOyHbXjTSxiPg5Ucys6KLIndZxuaJln3MPHgCtlRCAgXufwjv9eKPwmMmDlW660rEu31Kd8dYP8zNtXmpcSZW4HRX3Yx");
-
     xhr.send();
-
 }
 
 function gps(){
-    
-    
+    navigator.geolocation.getCurrentPosition(position => {
+        var long = position.coords.longitude;
+        var lati = position.coords.latitude;
+
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-
     xhr.addEventListener("readystatechange", function() {
     if(this.readyState === 4) {
         console.log(this.responseText);
@@ -71,27 +66,34 @@ function gps(){
     }
     });
 
-    xhr.open("GET", "https://api.yelp.com/v3/businesses/search?term="+resname.value+"&location="+locationname.value);
+    xhr.open("GET", "https://api.yelp.com/v3/businesses/search?term="+resname.value+"&latitude="+lati+"&longitude="+long);
     xhr.setRequestHeader("Authorization", "Bearer GwlxjEcOFdrbZeohh6vRfDOZKBkLIx10cobFqOyHbXjTSxiPg5Ucys6KLIndZxuaJln3MPHgCtlRCAgXufwjv9eKPwmMmDlW660rEu31Kd8dYP8zNtXmpcSZW4HRX3Yx");
-
     xhr.send();
-
- 
+});
 }
 
-
-
 function display(data){
-    alert("printing results");
+    document.body.style.height = '1200px';
     resultdiv.classList.remove('hide');
     resulttab.classList.add('active');
     homeName.classList.add('hide');
     hometab.classList.remove('active');
-    
-    resultdiv.innerHTML=data.businesses[1].name;
-    resultdiv.innerHTML=data.businesses[2].name;
-    resultdiv.innerHTML=data.businesses[1].name;
-    resultdiv.innerHTML=data.businesses[2].name;
-    resultdiv.innerHTML=data.businesses[1].name;
-    resultdiv.innerHTML=data.businesses[2].name;
+    resultdiv.innerHTML=" ";
+
+    var row = "<tr>"; 
+
+    for (var i=0; i<10; i++){
+        var store_is;
+        if (data.businesses[i].is_closed == true){
+            store_is = "Open"
+        }
+        else{
+            store_is = "Closed"
+        }
+        
+        mylist += "<li> <img src='"+data.businesses[i].image_url+"' width='100' height='100'></li>";
+    }
+    mylist += "</ul>"
+
+    resultdiv.innerHTML = mylist;
 }
