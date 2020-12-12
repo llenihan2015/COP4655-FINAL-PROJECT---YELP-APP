@@ -17,7 +17,6 @@ function login(){
     resname.value = "";
     locationname.value ="";
     document.body.style.height = '600px';
-    
 }
 
  //hide elements of the home tab
@@ -91,46 +90,95 @@ function display(data){
     
     table.appendChild(tbody);
 
-        for (var i=0; i<10; i++){
-        var store_is = "Closed";
-        if (data.businesses[i].is_closed == false){
-            store_is = "Open";
-        }
-        
-        var tr = document.createElement('TR');
-        var td1 = document.createElement('TD');
-        var td2 = document.createElement('TD');
-        var td3 = document.createElement('TD');
-        var td4 = document.createElement('TD');
+        for (let i=0; i<10; i++){
 
-        var img = document.createElement("img");
-        img.src = data.businesses[i].image_url;
-        img.style.width = "100px";
-        img.style.height="100px";
+            let store_is = "Closed";
+            if (data.businesses[i].is_closed == false){
+                store_is = "Open";
+            }
+            
+            let tr = document.createElement('TR');
+            let td1 = document.createElement('TD');
+            let td2 = document.createElement('TD');
+            let td3 = document.createElement('TD');
+            let td4 = document.createElement('TD');
 
-        var btn = document.createElement('button');
-        btn.innerHTML = "<i class='fas fa-angle-double-right' style='color:#7E3131;'></i>";
-        btn.style.borderRadius="8px";
-        btn.style.backgroundColor="#F0B27A";
-        btn.style.borderColor="#F0B27A";
-        btn.style.marginLeft="5px;"
-        
+            let img = document.createElement("img");
+            img.src = data.businesses[i].image_url;
+            img.style.width = "100px";
+            img.style.height="100px";
 
+            let btn = document.createElement('button');
+            btn.innerHTML = "<i class='fas fa-angle-double-right' style='color:#7E3131;'></i>";
+            btn.style.borderRadius="8px";
+            btn.style.backgroundColor="#F0B27A";
+            btn.style.borderColor="#F0B27A";
+            btn.style.marginLeft="5px;"
+            btn.id = data.businesses[i].id;
 
-        //btn.addEventListener(click, function(){
-          //  alert("Clicked!");
-        //})
+            td1.appendChild(img);
+            td2.appendChild(document.createTextNode(data.businesses[i].name));
+            td3.appendChild(document.createTextNode(store_is));
+            td4.appendChild(btn);
 
-        td1.appendChild(img);
-        td2.appendChild(document.createTextNode(data.businesses[i].name));
-        td3.appendChild(document.createTextNode(store_is));
-        td4.appendChild(btn);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tbody.appendChild(tr);
 
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
-        tbody.appendChild(tr);
+            btn.addEventListener("click" , function(){
+
+                let id;
+                switch(btn.id){
+                    case data.businesses[0].id:
+                        alert(data.businesses[0].name, );
+                        id = data.businesses[0].id;
+
+                        businessId(id);
+
+                        break;
+                    case data.businesses[1].id:
+                        alert(data.businesses[1].name);
+                        id = data.businesses[1].id;
+                        break;
+                    case data.businesses[2].id:
+                        alert(data.businesses[2].name);
+                        id = data.businesses[2].id;
+                        break;
+                    case data.businesses[3].id:
+                        alert(data.businesses[3].name);
+                        id = data.businesses[3].id;
+                        break;
+                    case data.businesses[4].id:
+                        alert(data.businesses[4].name);
+                        id = data.businesses[4].id;
+                        break;
+                    case data.businesses[5].id:
+                        alert(data.businesses[5].name);
+                        id = data.businesses[5].id;
+                        break;
+                    case data.businesses[6].id:
+                        alert(data.businesses[6].name);
+                        id = data.businesses[6].id;
+                        break;
+                    case data.businesses[7].id:
+                        alert(data.businesses[7].name);
+                        id = data.businesses[7].id;
+                        break;
+                    case data.businesses[8].id:
+                        alert(data.businesses[8].name);
+                        id = data.businesses[8].id;
+                        break;
+                    case data.businesses[9].id:
+                        alert(data.businesses[9].name);
+                        id = data.businesses[9].id;
+                        break;
+                    default:
+                        alert("Error Sorry");
+                }
+
+            });
     }
     resultdiv.appendChild(table);
 }

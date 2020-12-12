@@ -138,7 +138,7 @@ h3{
     line-height: 16px;
 }
 
-#logoutbtn{
+#logoutbtn, #backbtn{
     background-color: #F7D1BA;
     border-color:#F7D1BA;
     border-radius: 15px;
@@ -152,7 +152,7 @@ h3{
     float:right;
 }
 
-#logoutbtn:hover{
+#logoutbtn:hover, #backbtn:hover{
     background-color:#F0B27A;
     border-radius: 15px;
     color: black;
