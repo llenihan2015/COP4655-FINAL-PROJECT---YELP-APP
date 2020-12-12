@@ -14,6 +14,8 @@ function login(){
     logoutbtn.classList.remove('hide');
     resulttab.classList.remove('active');
     resultdiv.classList.add('hide');
+    resultpage.classList.add('hide');
+    backbtn.classList.add('hide');
     resname.value = "";
     locationname.value ="";
     document.body.style.height = '600px';
@@ -27,6 +29,8 @@ function logout(){
     studname.classList.remove('hide');
     homeName.classList.add('hide'); 
     logoutbtn.classList.add('hide');
+    resultpage.classList.add('hide');
+    backbtn.classList.add('hide');
     resultdiv.innerHTML=" ";
     resname.value = "";
     locationname.value ="";
@@ -128,15 +132,11 @@ function display(data){
             tbody.appendChild(tr);
 
             btn.addEventListener("click" , function(){
-
                 let id;
                 switch(btn.id){
                     case data.businesses[0].id:
-                        alert(data.businesses[0].name, );
+                        alert(data.businesses[0].name);
                         id = data.businesses[0].id;
-
-                        businessId(id);
-
                         break;
                     case data.businesses[1].id:
                         alert(data.businesses[1].name);
@@ -177,7 +177,7 @@ function display(data){
                     default:
                         alert("Error Sorry");
                 }
-
+                businessId(id);
             });
     }
     resultdiv.appendChild(table);

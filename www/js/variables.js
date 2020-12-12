@@ -13,5 +13,7 @@ var locationname = document.getElementById('locationname');
 var resname = document.getElementById('resname');
 var locationname = document.getElementById('locationname');
 var resultdiv = document.getElementById('resultdiv');
+var resultpage = document.getElementById('resultpage');
+var backbtn = document.getElementById('backbtn');
 
 
