@@ -26,7 +26,10 @@
    <!-- Fontawesome Icons -->
 
   <script src="https://kit.fontawesome.com/878cfd8419.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lpIDne7SLXlOqdLStzb4SS3CxSPMQZI"
+ type="text/javascript"></script>
 </head>
 <body>
 
@@ -54,13 +57,15 @@
     <div id="resultdiv" class="hide" >
     
     </div>
-    <button id="backbtn" class="hide">GO BACK</button> <br>
+    <button id="backbtn" class="hide">GO BACK</button> <br><br>
+    <button id="addfave" class="hide"><i class="fas fa-heart " id="heart"></i></button>
+
     <div id="resultpage" class="hide">
     </div>
-    <div id="map" class="hide">
 
+    <div id="mapArea" class="hide">
+      <div id="map-content"></div>
     </div>
-    
 
     <div class="logindiv">
         <button id="loginbtn" >LOG IN</button>

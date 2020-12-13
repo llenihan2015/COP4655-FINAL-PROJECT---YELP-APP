@@ -1,5 +1,15 @@
-resulttab.addEventListener('click', displayResult);
+resulttab.addEventListener('click', clickresult);
 backbtn.addEventListener('click', goback);
+
+
+function clickresult(){
+    hometab.classList.remove('active');
+    homeName.classList.add('hide');
+    resultdiv.classList.add('hide');
+    resultpage.classList.remove('hide');
+    backbtn.classList.remove('hide');
+    mapArea.classList.remove('hide');
+}
 
 function businessId(id){
     var xhr = new XMLHttpRequest();
@@ -18,12 +28,13 @@ function businessId(id){
 
 function displayResult(result){
     resultpage.innerHTML=" ";
-    document.body.style.height = '1190px';
+    document.body.style.height = '875px';
     hometab.classList.remove('active');
     homeName.classList.add('hide');
     resultdiv.classList.add('hide');
     resultpage.classList.remove('hide');
     backbtn.classList.remove('hide');
+    addfave.classList.remove('hide');
 
     let store_is = "Closed";
             if (result.is_closed == false){
@@ -75,7 +86,75 @@ function displayResult(result){
     phoneNum.style.textAlign="left";
     phoneNum.style.paddingLeft="2px";
     phoneNum.style.marginLeft="15px";
-    phoneNum.appendChild(document.createTextNode("Phone Number: "+result.display_phone))
+    phoneNum.appendChild(document.createTextNode("Phone Number: "+result.display_phone));
+
+    let hour = document.createElement('p');
+    hour.style.fontFamily ="Nunito";
+    hour.style.fontSize = "10px";
+    hour.style.color="white";
+    hour.style.textAlign="left";
+    hour.style.paddingLeft="2px";
+    hour.style.marginLeft="15px";
+    hour.appendChild(document.createTextNode("Operating Hours: "));
+
+    let table = document.createElement('TABLE');
+    table.style.margin = "auto";
+
+    let tbody = document.createElement('TBODY');
+    tbody.style.fontFamily ="Nunito";
+    tbody.style.fontSize = "10px";
+    tbody.style.color="white";
+    tbody.style.textAlign = "center";
+
+    table.appendChild(tbody);
+
+    for(let i=0; i<7; i++){
+        let day="";
+            if(result.hours[0].open[i].day == "0"){
+                day = "Monday";
+            }
+            else if(result.hours[0].open[i].day == "1"){
+                day = "Tuesday";
+            }
+            else if(result.hours[0].open[i].day == "2"){
+                day = "Wednesday";
+            }
+            else if(result.hours[0].open[i].day == "3"){
+                day = "Thursday";
+            }
+            else if(result.hours[0].open[i].day == "4"){
+                day = "Friday";
+            }
+            else if(result.hours[0].open[i].day == "5"){
+                day = "Saturday";
+            }
+            else if(result.hours[0].open[i].day == "6"){
+                day = "Sunday";
+            }
+            else{
+                day ="Error getting day";
+            }
+        let startTime= result.hours[0].open[i].start;
+        let endTime =  result.hours[0].open[i].end;
+        let tr = document.createElement('TR');
+        let td1 = document.createElement('TD');
+        let td2 = document.createElement('TD');
+        td1.appendChild(document.createTextNode(day));
+        td2.appendChild(document.createTextNode( getFormattedTime(startTime) + " - " + getFormattedTime(endTime)));
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tbody.append(tr);
+    }
+    
+    let addy = document.createElement('p');
+    addy.style.fontFamily ="Nunito";
+    addy.style.fontSize = "10px";
+    addy.style.color="white";
+    addy.style.textAlign="center";
+    addy.style.paddingLeft="2px";
+    addy.style.marginLeft="15px";
+    addy.appendChild(document.createTextNode("Address: " + result.location.display_address[0] + " " 
+                    + result.location.display_address[1]));
 
     resultpage.appendChild(restoName);
     resultpage.appendChild(hr);
@@ -83,8 +162,39 @@ function displayResult(result){
     resultpage.appendChild(otherInfo);
     resultpage.appendChild(phoneNum);
     resultpage.appendChild(if_claimed);
+    resultpage.appendChild(table);
+    resultpage.appendChild(addy);
+
+    displayMap(result);
+
 }
 
+function getFormattedTime(fourDigitTime){
+    var hours24 = parseInt(fourDigitTime.substring(0,2));
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = fourDigitTime.substring(2);
+
+    return hours + ':' + minutes + amPm;
+};
+
+function displayMap(result){
+    mapArea.classList.remove('hide');
+    let lat = result.coordinates.latitude;
+    let long = result.coordinates.longitude;
+    //Google Maps
+    var myLatlng = new google.maps.LatLng(lat, long);
+    var mapOptions = {
+    zoom: 15,
+    center: myLatlng
+    }
+    let maptry = document.getElementById('map-content').innerHTML="HELLO";
+    const map = new google.maps.Map(document.getElementById('map-content'), mapOptions);
+    const marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map
+    }) 
+}
 function goback(){
     document.body.style.height = '1190px';
     resultdiv.classList.remove('hide');
@@ -92,5 +202,7 @@ function goback(){
     resultpage.classList.add('hide');
     resulttab.classList.add('active');
     hometab.classList.remove('active');
-    
+    backbtn.classList.add('hide');
+    mapArea.classList.add('hide');
 }
+

@@ -16,6 +16,8 @@ function login(){
     resultdiv.classList.add('hide');
     resultpage.classList.add('hide');
     backbtn.classList.add('hide');
+    addfave.classList.add("hide");
+    mapArea.classList.add('hide');
     resname.value = "";
     locationname.value ="";
     document.body.style.height = '600px';
@@ -29,8 +31,11 @@ function logout(){
     studname.classList.remove('hide');
     homeName.classList.add('hide'); 
     logoutbtn.classList.add('hide');
-    resultpage.classList.add('hide');
     backbtn.classList.add('hide');
+    addfave.classList.add("hide");
+    apArea.classList.add('hide');
+    mapArea.innerHTML =" ";
+    resultpage.innerHTML =" ";
     resultdiv.innerHTML=" ";
     resname.value = "";
     locationname.value ="";

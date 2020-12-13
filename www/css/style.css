@@ -251,3 +251,27 @@ background-color: rgba(255, 255, 255, 0.2);
 color:#DAA500;
 width: 340px;
 }
+
+#map-content{
+    width: 360px;
+    height:260px;
+}
+
+#addfave{
+    background-color: transparent;
+    float:right;
+    line-height: 2px;
+    border: 0;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+#heart{
+    color: white;
+    font-size: 18px !important;
+    
+}
+#heart:hover{
+    color: #F0B27A;
+    font-size: 18px !important;
+}

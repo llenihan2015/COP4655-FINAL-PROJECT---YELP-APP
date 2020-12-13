@@ -15,5 +15,6 @@ var locationname = document.getElementById('locationname');
 var resultdiv = document.getElementById('resultdiv');
 var resultpage = document.getElementById('resultpage');
 var backbtn = document.getElementById('backbtn');
+var mapArea = document.getElementById('mapArea');
 
 
