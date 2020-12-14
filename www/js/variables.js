@@ -16,5 +16,10 @@ var resultdiv = document.getElementById('resultdiv');
 var resultpage = document.getElementById('resultpage');
 var backbtn = document.getElementById('backbtn');
 var mapArea = document.getElementById('mapArea');
+var favelist = document.getElementById('favelist');
+var favediv = document.getElementById('favediv');
+var favetab = document.querySelector('#favetab');
+var faveId;
+var faveName;
 
 

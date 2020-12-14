@@ -254,7 +254,7 @@ width: 340px;
 
 #map-content{
     width: 360px;
-    height:260px;
+    height:267px;
 }
 
 #addfave{
@@ -274,4 +274,13 @@ width: 340px;
 #heart:hover{
     color: #F0B27A;
     font-size: 18px !important;
+}
+
+h4{
+    font-family: 'Fredoka One', 'Sans-Serif';
+    color: #DAA500;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 300;
+    margin-top: 0;
 }

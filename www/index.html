@@ -30,6 +30,11 @@
   <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lpIDne7SLXlOqdLStzb4SS3CxSPMQZI"
  type="text/javascript"></script>
+
+ <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
+
 </head>
 <body>
 
@@ -58,14 +63,18 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lpIDne7SLXlOqdLStzb4SS3
     
     </div>
     <button id="backbtn" class="hide">GO BACK</button> <br><br>
-    <button id="addfave" class="hide"><i class="fas fa-heart " id="heart"></i></button>
-
     <div id="resultpage" class="hide">
     </div>
 
     <div id="mapArea" class="hide">
       <div id="map-content"></div>
     </div>
+
+    <div id = "favelist" class="hide">
+      <h4> FAVORITES </h4>
+      <div id="favediv" ></div>
+    </div>
+    
 
     <div class="logindiv">
         <button id="loginbtn" >LOG IN</button>
@@ -97,6 +106,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lpIDne7SLXlOqdLStzb4SS3
 <script src="js/navigation.js"></script>
 <script src="js/result.js"></script>
 <script src="js/favorite.js"></script>
-
+<script src="js/firebase.js"></script>
 
 </html>
+  

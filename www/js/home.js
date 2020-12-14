@@ -13,11 +13,12 @@ function login(){
     homeName.classList.remove('hide');
     logoutbtn.classList.remove('hide');
     resulttab.classList.remove('active');
+    favetab.classList.remove('active');
     resultdiv.classList.add('hide');
     resultpage.classList.add('hide');
     backbtn.classList.add('hide');
-    addfave.classList.add("hide");
     mapArea.classList.add('hide');
+    favelist.classList.add('hide');
     resname.value = "";
     locationname.value ="";
     document.body.style.height = '600px';
@@ -32,8 +33,8 @@ function logout(){
     homeName.classList.add('hide'); 
     logoutbtn.classList.add('hide');
     backbtn.classList.add('hide');
-    addfave.classList.add("hide");
-    apArea.classList.add('hide');
+    mapArea.classList.add('hide');
+    favelist.classList.add('hide');
     mapArea.innerHTML =" ";
     resultpage.innerHTML =" ";
     resultdiv.innerHTML=" ";
@@ -86,6 +87,7 @@ function display(data){
     resulttab.classList.add('active');
     homeName.classList.add('hide');
     hometab.classList.remove('active');
+    favetab.classList.remove('active');
     resultdiv.innerHTML=" ";
 
     var table = document.createElement('TABLE');
@@ -140,43 +142,33 @@ function display(data){
                 let id;
                 switch(btn.id){
                     case data.businesses[0].id:
-                        alert(data.businesses[0].name);
                         id = data.businesses[0].id;
                         break;
                     case data.businesses[1].id:
-                        alert(data.businesses[1].name);
                         id = data.businesses[1].id;
                         break;
                     case data.businesses[2].id:
-                        alert(data.businesses[2].name);
                         id = data.businesses[2].id;
                         break;
                     case data.businesses[3].id:
-                        alert(data.businesses[3].name);
                         id = data.businesses[3].id;
                         break;
                     case data.businesses[4].id:
-                        alert(data.businesses[4].name);
                         id = data.businesses[4].id;
                         break;
                     case data.businesses[5].id:
-                        alert(data.businesses[5].name);
                         id = data.businesses[5].id;
                         break;
                     case data.businesses[6].id:
-                        alert(data.businesses[6].name);
                         id = data.businesses[6].id;
                         break;
                     case data.businesses[7].id:
-                        alert(data.businesses[7].name);
                         id = data.businesses[7].id;
                         break;
                     case data.businesses[8].id:
-                        alert(data.businesses[8].name);
                         id = data.businesses[8].id;
                         break;
                     case data.businesses[9].id:
-                        alert(data.businesses[9].name);
                         id = data.businesses[9].id;
                         break;
                     default:

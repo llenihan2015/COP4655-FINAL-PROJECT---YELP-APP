@@ -1,7 +1,6 @@
 resulttab.addEventListener('click', clickresult);
 backbtn.addEventListener('click', goback);
 
-
 function clickresult(){
     hometab.classList.remove('active');
     homeName.classList.add('hide');
@@ -9,6 +8,7 @@ function clickresult(){
     resultpage.classList.remove('hide');
     backbtn.classList.remove('hide');
     mapArea.classList.remove('hide');
+    favelist.classList.add('hide');
 }
 
 function businessId(id){
@@ -28,13 +28,16 @@ function businessId(id){
 
 function displayResult(result){
     resultpage.innerHTML=" ";
-    document.body.style.height = '875px';
+    document.body.style.height = '915px';
     hometab.classList.remove('active');
+    favetab.classList.remove('active');
     homeName.classList.add('hide');
     resultdiv.classList.add('hide');
     resultpage.classList.remove('hide');
     backbtn.classList.remove('hide');
-    addfave.classList.remove('hide');
+    favelist.classList.add('hide');
+    mapArea.classList.remove('hide');
+   
 
     let store_is = "Closed";
             if (result.is_closed == false){
@@ -45,11 +48,22 @@ function displayResult(result){
                 claimed = "Unclaimed (✗)";
             }
 
+    let addfave = document.createElement('button');
+    addfave.innerHTML = "<i class='fas fa-heart' style='color:white; font-size: 18px;'></i>";
+    addfave.style.backgroundColor="transparent";
+    addfave.style.border="0";
+    addfave.style.float="right";
+    addfave.style.marginRight="5px";
+    addfave.style.marginBottom="0";
+    addfave.id = result.id;
+    faveId = addfave.id;
+
     let restoName = document.createElement('h2');
     restoName.style.fontFamily="Nunito";
     restoName.style.color="#DAA500";
     restoName.style.textAlign="center";
     restoName.appendChild(document.createTextNode(result.name));
+    faveName = result.name;
     
     let hr = document.createElement('hr');
     hr.style.border="1px solid white";
@@ -145,7 +159,7 @@ function displayResult(result){
         tr.appendChild(td2);
         tbody.append(tr);
     }
-    
+
     let addy = document.createElement('p');
     addy.style.fontFamily ="Nunito";
     addy.style.fontSize = "10px";
@@ -156,6 +170,7 @@ function displayResult(result){
     addy.appendChild(document.createTextNode("Address: " + result.location.display_address[0] + " " 
                     + result.location.display_address[1]));
 
+    resultpage.appendChild(addfave);
     resultpage.appendChild(restoName);
     resultpage.appendChild(hr);
     resultpage.appendChild(titleInfo);
@@ -166,7 +181,9 @@ function displayResult(result){
     resultpage.appendChild(addy);
 
     displayMap(result);
-
+    addfave.addEventListener('click', function clickfavebtn(){
+        addtolist(faveId, faveName);
+    });
 }
 
 function getFormattedTime(fourDigitTime){
@@ -174,7 +191,6 @@ function getFormattedTime(fourDigitTime){
     var hours = ((hours24 + 11) % 12) + 1;
     var amPm = hours24 > 11 ? 'pm' : 'am';
     var minutes = fourDigitTime.substring(2);
-
     return hours + ':' + minutes + amPm;
 };
 
