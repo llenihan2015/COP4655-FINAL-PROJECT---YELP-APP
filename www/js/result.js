@@ -62,6 +62,7 @@ function displayResult(result){
     restoName.style.fontFamily="Nunito";
     restoName.style.color="#DAA500";
     restoName.style.textAlign="center";
+    
     restoName.appendChild(document.createTextNode(result.name));
     faveName = result.name;
     
@@ -182,7 +183,7 @@ function displayResult(result){
 
     displayMap(result);
     addfave.addEventListener('click', function clickfavebtn(){
-        addtolist(faveId, faveName);
+        addtolist(faveName);
     });
 }
 

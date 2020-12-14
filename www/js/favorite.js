@@ -10,7 +10,7 @@ function fave(){
     favelist.classList.remove('hide');
 }
 
-function addtolist(faveId, faveName){
+function addtolist(faveName){
     hometab.classList.remove('active');
     resulttab.classList.remove('active');
     favetab.classList.add('active');
@@ -21,45 +21,59 @@ function addtolist(faveId, faveName){
     mapArea.classList.add('hide');
     favelist.classList.remove('hide');
 
+
     var database= firebase.database();
     var ref = database.ref('Favorites');
 
     var insertInfo = {
-        id: faveId,
         name: faveName
     }
         ref.push(insertInfo);  
-    
-
         ref.on("value", function(snapshot){
             favediv.innerHTML=" ";
             snapshot.forEach(function(childSnapshot){
-    
+                
                 var data = childSnapshot.val();
 
-                let info = document.createElement('h6');
+                var table = document.createElement('TABLE');
+                table.style.margin = "auto";
+                var tbody = document.createElement('TBODY');
+                table.appendChild(tbody);
+
+                let info = document.createElement('p');
                 info.style.fontFamily = "Nunito";
-                info.style.fontSize = "16px";
+                info.style.fontSize = "14px";
+                info.style.fontWeight="100";
                 info.style.color="#DAA500";
-                info.style.marginLeft="25px";
-                info.style.marginTop="1px";
-                info.style.marginBotton="2px";
+                info.style.textAlign="center";
                 info.appendChild(document.createTextNode(data.name));
-                
+
+                let tr = document.createElement('TR');
+                let td1 = document.createElement('TD');
+                let td2 = document.createElement('TD');
+
                 let btn = document.createElement('button');
-                btn.innerHTML = "<i class='fas fa-trash' style='color:white; font-size: 16px;'></i>";
+                btn.innerHTML = "<i class='fas fa-trash' style='color:white; font-size: 10px;'></i>";
                 btn.style.backgroundColor="transparent";
                 btn.style.border="0";
-                btn.style.marginTop="0";
-                btn.style.marginBottom="0";
-                //btn.addEventListener("click", function(){
-                  //  alert(faveName + " is deleted!");
-                //})
-                favediv.appendChild(info);
-                favediv.appendChild(btn);
+                btn.style.margin="0";
+                btn.style.float="right";
+
+                btn.addEventListener("click", function(){
+                    ref.remove();
+                })
+
+                td1.appendChild(info);
+                td2.appendChild(btn);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tbody.appendChild(tr);
+                favediv.appendChild(table);
         })
-        
-        
     
     })
+
+    
+
 }
+
